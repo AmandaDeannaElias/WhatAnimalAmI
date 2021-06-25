@@ -26,7 +26,6 @@
         <h3 v-bind:style="textColor">I am black and white, the ocean's top apex predator
           and swim up to 50 km/h.</h3>
           <ol>
-            <!--if it is the correct answer, set true, if its the wrong answer, set false-->
           <li v-bind:style="textColor" v-bind:class="{isTrue}">Killer Whale</li>
           <li v-bind:style="textColor" v-bind:class="{isFalse}">Dolphin</li>
           <li v-bind:style="textColor" v-bind:class="{isFalse}">Penguin</li>
@@ -51,7 +50,6 @@
           textColor: {
             color: '#965251',
           },
-          //set classes to true and false for corrent and incorrect answers
           isTrue: true,
           isFalse: false
         }
