@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        /* styling for loadClass */
+        .container {
+            background: #965251;
+            max-width: 500px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!--bind loadClass, highlight and textColor object to call styling from .container and apply to tags-->
+        <!-- call the title from the object -->
+        <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
+        <!--bind the source of the image, the alt text and the title from the object-->
+        <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
+        <!-- for every question found in the quiz object, display with binded styling-->
+        <div v-for="question in quiz.questions">
+            <h2 span v-bind:class="loadClass" v-bind:style="highlight">{{ question.text }}</h2>
+            <ol>
+                <!--got rid of istrue and isfalse classes as it is now being handled in object with "correct"-->
+                <!-- for every answer found in the quiz object, display with binded styling-->
+                <li v-for="answer in question.answers" v-bind:style="textStyle">
+                    <label>
+                        <input type="radio"> {{answer.text}}
+                    </label>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        //create onload function for page loading
+        window.onload = function () {
+            //creating a quiz object to hold questions and answers to be able to render via for-loop
+            var quiz = {
+                //the questions text holds the question, and the answers within the questions are assigned a boolean of true if correct.
+                questions: [
+                    {
+                        text: "1. I am black and white, the ocean's top apex predator and swim up to 50 km/h.",
+                        answers: [
+                            { text: 'Dolphin' },
+                            { text: 'Killer Whale', correct: true },
+                            { text: 'Penguin' },
+                        ]
+                    }, {
+                        text: "2. I am gray and found in Africa with large ears and a family oriented culture.",
+                        answers: [
+                            { text: 'Elephant', correct: true },
+                            { text: 'Lemur' },
+                            { text: 'African Grey Parrot' },
+                        ]
+                    }
+                ]
+            };
+            var app = new Vue({
+                //bind object to above html tags
+                el: '#app',
+                data: {
+                    loadClass: 'container',
+                    newAlt: 'Lion at Sunset',
+                    newSrc: 'images/Lion.jpg',
+                    newTitle: 'Lion',
+                    highlight: {
+                        color: 'white',
+                    },
+                    textStyle: {
+                        color: '#965251',
+                        listStyleType: 'none',
+                    },
+                    //attach vue data into quiz
+                    quiz: quiz,
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
