@@ -5,7 +5,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        /* styling for loadClass */
         .container {
             background: #965251;
             max-width: 500px;
@@ -16,10 +15,7 @@
 
 <body>
     <div id="app">
-        <!--bind loadClass, highlight and textColor object to call styling from .container and apply to tags-->
-        <!-- call the title from the object -->
         <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
-        <!--bind the source of the image, the alt text and the title from the object-->
         <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
         <!-- for every question found in the quiz object, display with binded styling-->
         <div v-for="question in quiz.questions">
@@ -37,7 +33,6 @@
     </div>
 
     <script>
-        //create onload function for page loading
         window.onload = function () {
             //creating a quiz object to hold questions and answers to be able to render via for-loop
             var quiz = {
@@ -61,7 +56,6 @@
                 ]
             };
             var app = new Vue({
-                //bind object to above html tags
                 el: '#app',
                 data: {
                     loadClass: 'container',
@@ -75,6 +69,7 @@
                         color: '#965251',
                         listStyleType: 'none',
                     },
+                    // attach vue data to quiz
                     quiz: quiz,
                 }
             });

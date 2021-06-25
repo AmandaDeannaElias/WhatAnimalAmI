@@ -5,7 +5,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        /* styling for loadClass */
         .container {
             background: #965251;
             max-width: 500px;
@@ -16,13 +15,12 @@
 
 <body>
     <div id="app">
-        <!--bind loadClass, highlight and textColor object to call styling from .container and apply to tags-->
-        <!-- call the title from the object -->
         <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
-        <!--bind the source of the image, the alt text and the title from the object-->
         <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
-        <!-- for every question found in the quiz object, display with binded styling-->
-        <div v-for="question in quiz.questions">
+        <!-- checking for current index of the question-->
+        <div v-for="(question, index) in quiz.questions">
+            <!-- only display question that is at current index-->
+            <div v-show="index === questionIndex">
             <h2 span v-bind:class="loadClass" v-bind:style="highlight">{{ question.text }}</h2>
             <ol>
                 <!--got rid of istrue and isfalse classes as it is now being handled in object with "correct"-->
@@ -33,15 +31,20 @@
                     </label>
                 </li>
             </ol>
+            <!-- if the question index is after the index of 0 (aka the first one), display the previous button-->
+            <button v-if="questionIndex > 0" v-on:click="prev">
+                Previous Question
+              </button>
+              <button v-on:click="next">
+                Next Question
+              </button>
+        </div>
         </div>
     </div>
 
     <script>
-        //create onload function for page loading
         window.onload = function () {
-            //creating a quiz object to hold questions and answers to be able to render via for-loop
             var quiz = {
-                //the questions text holds the question, and the answers within the questions are assigned a boolean of true if correct.
                 questions: [
                     {
                         text: "1. I am black and white, the ocean's top apex predator and swim up to 50 km/h.",
@@ -61,7 +64,6 @@
                 ]
             };
             var app = new Vue({
-                //bind object to above html tags
                 el: '#app',
                 data: {
                     loadClass: 'container',
@@ -75,8 +77,19 @@
                         color: '#965251',
                         listStyleType: 'none',
                     },
-                    //attach vue data into quiz
                     quiz: quiz,
+                    //current question index in array
+                    questionIndex: 0,
+                },
+                methods: {
+                    // next question
+                    next: function () {
+                        this.questionIndex++;
+                    },
+                    // previous question
+                    prev: function () {
+                        this.questionIndex--;
+                    }
                 }
             });
         }
