@@ -15,8 +15,10 @@
 
 <body>
   <div id="app">
+    <!--bind loadClass, highlight and textColor object to call styling from .container and apply to tags-->
     <!-- call the title from the object -->
     <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
+    <!--bind the source of the image, the alt text and the title from the object-->
     <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
       <div>
         <h2 span v-bind:class="loadClass" v-bind:style="highlight">Question 1:</h2> 
