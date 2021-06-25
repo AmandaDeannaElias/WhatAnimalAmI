@@ -21,16 +21,16 @@
     <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
     <!--bind the source of the image, the alt text and the title from the object-->
     <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
-      <div>
-        <h2 span v-bind:class="loadClass" v-bind:style="highlight">Question 1:</h2> 
-        <h3 v-bind:style="textColor">I am black and white, the ocean's top apex predator
-          and swim up to 50 km/h.</h3>
-          <ol>
-          <li v-bind:style="textColor">Killer Whale</li>
-          <li v-bind:style="textColor">Dolphin</li>
-          <li v-bind:style="textColor">Penguin</li>
-        </ol>
-      </div>
+    <div>
+      <h2 span v-bind:class="loadClass" v-bind:style="highlight">Question 1:</h2>
+      <h3 v-bind:style="textColor">I am black and white, the ocean's top apex predator
+        and swim up to 50 km/h.</h3>
+      <ol>
+        <li v-bind:style="textColor">Killer Whale</li>
+        <li v-bind:style="textColor">Dolphin</li>
+        <li v-bind:style="textColor">Penguin</li>
+      </ol>
+    </div>
   </div>
 
   <script>
@@ -54,5 +54,6 @@
       });
     }
   </script>
-  </body>
-  </html>
+</body>
+
+</html>
