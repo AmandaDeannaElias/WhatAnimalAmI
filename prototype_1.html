@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .container {
+      background: #965251;
+      max-width: 500px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- call the title from the object -->
+    <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
+    <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
+      <div>
+        <h2 span v-bind:class="loadClass" v-bind:style="highlight">Question 1:</h2> 
+        <h3 v-bind:style="textColor">I am black and white, the ocean's top apex predator
+          and swim up to 50 km/h.</h3>
+          <ol>
+          <li v-bind:style="textColor">Killer Whale</li>
+          <li v-bind:style="textColor">Dolphin</li>
+          <li v-bind:style="textColor">Penguin</li>
+        </ol>
+      </div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      var app = new Vue({
+        //Bind Vue object to HTML element through query selector
+        el: '#app',
+        data: {
+          loadClass: 'container',
+          newAlt: 'Lion at Sunset',
+          newSrc: 'images/Lion.jpg',
+          newTitle: 'Lion',
+          highlight: {
+            color: 'white',
+          },
+          textColor: {
+            color: '#965251',
+          }
+        }
+      });
+    }
+  </script>
+  </body>
+  </html>

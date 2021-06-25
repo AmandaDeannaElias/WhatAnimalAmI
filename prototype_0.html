@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!--Where "are we connected?"" will display-->
+    <div id="app">
+        {{title}}
+    </div>
+
+    <script>
+        window.onload = function () {
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    //assign "are we connected?"" to div
+                    title: 'Are we connected?'
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
