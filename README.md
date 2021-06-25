@@ -20,4 +20,5 @@
 ## Resources
 - https://codeburst.io/create-a-quiz-with-vue-js-ed1e8e0e8294
 - https://vuejs.org/v2/guide/conditional.html
+- https://forum.vuejs.org/t/access-v-for-index-in-method/23176
 - https://github.com/AmandaDeannaElias/vuepractice
