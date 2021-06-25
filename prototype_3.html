@@ -21,14 +21,17 @@
     <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
     <!--bind the source of the image, the alt text and the title from the object-->
     <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
-      <div>
-        <h2 span v-bind:class="loadClass" v-bind:style="highlight">Question 1:</h2> 
-        <h3 v-bind:style="textColor">I am black and white, the ocean's top apex predator
-          and swim up to 50 km/h.</h3>
+    <!-- for every question found in the quiz object, display with binded styling-->
+      <div v-for="question in quiz.questions">
+        <h2 span v-bind:class="loadClass" v-bind:style="highlight">{{ question.text }}</h2> 
           <ol>
-          <li v-bind:style="textColor" v-bind:class="{isTrue}">Killer Whale</li>
-          <li v-bind:style="textColor" v-bind:class="{isFalse}">Dolphin</li>
-          <li v-bind:style="textColor" v-bind:class="{isFalse}">Penguin</li>
+              <!--got rid of istrue and isfalse classes as it is now being handled in object with "correct"-->
+              <!-- for every answer found in the quiz object, display with binded styling-->
+          <li v-for="answer in question.answers" v-bind:style="textColor">
+            <label>
+                <input type="radio"> {{answer.text}}
+              </label>
+          </li>
         </ol>
       </div>
   </div>
@@ -36,6 +39,27 @@
   <script>
     //create onload function for page loading
     window.onload = function () {
+        //creating a quiz object to hold questions and answers to be able to render via for-loop
+        var quiz = {
+            //the questions text holds the question, and the answers within the questions are assigned a boolean of true if correct.
+        questions: [
+          {
+            text: "1. I am black and white, the ocean's top apex predator and swim up to 50 km/h.",
+            answers: [
+              {text: 'Dolphin'}, 
+              {text: 'Killer Whale', correct: true}, 
+              {text: 'Penguin'}, 
+            ]
+          }, {
+            text: "2. I am gray and found in Africa with large ears and a family oriented culture.",
+            answers: [
+              {text: 'Elephant', correct: true}, 
+              {text: 'Lemur'}, 
+              {text: 'African Grey Parrot'},
+            ]
+          } 
+        ]
+      };
       var app = new Vue({
         //bind object to above html tags
         el: '#app',
@@ -50,8 +74,7 @@
           textColor: {
             color: '#965251',
           },
-          isTrue: true,
-          isFalse: false
+          quiz: quiz,
         }
       });
     }
