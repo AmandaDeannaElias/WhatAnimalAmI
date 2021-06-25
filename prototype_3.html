@@ -27,7 +27,7 @@
           <ol>
               <!--got rid of istrue and isfalse classes as it is now being handled in object with "correct"-->
               <!-- for every answer found in the quiz object, display with binded styling-->
-          <li v-for="answer in question.answers" v-bind:style="textColor">
+          <li v-for="answer in question.answers" v-bind:style="textStyle">
             <label>
                 <input type="radio"> {{answer.text}}
               </label>
@@ -71,8 +71,9 @@
           highlight: {
             color: 'white',
           },
-          textColor: {
+          textStyle: {
             color: '#965251',
+            listStyleType: 'none',
           },
           quiz: quiz,
         }
