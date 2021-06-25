@@ -21,24 +21,24 @@
         <div v-for="(question, index) in quiz.questions">
             <!-- only display question that is at current index-->
             <div v-show="index === questionIndex">
-            <h2 span v-bind:class="loadClass" v-bind:style="highlight">{{ question.text }}</h2>
-            <ol>
-                <!--got rid of istrue and isfalse classes as it is now being handled in object with "correct"-->
-                <!-- for every answer found in the quiz object, display with binded styling-->
-                <li v-for="answer in question.answers" v-bind:style="textStyle">
-                    <label>
-                        <input type="radio"> {{answer.text}}
-                    </label>
-                </li>
-            </ol>
-            <!-- if the question index is after the index of 0 (aka the first one), display the previous button-->
-            <button v-if="questionIndex > 0" v-on:click="prev">
-                Previous Question
-              </button>
-              <button v-on:click="next">
-                Next Question
-              </button>
-        </div>
+                <h2 span v-bind:class="loadClass" v-bind:style="highlight">{{ question.text }}</h2>
+                <ol>
+                    <!--got rid of istrue and isfalse classes as it is now being handled in object with "correct"-->
+                    <!-- for every answer found in the quiz object, display with binded styling-->
+                    <li v-for="answer in question.answers" v-bind:style="textStyle">
+                        <label>
+                            <input type="radio"> {{answer.text}}
+                        </label>
+                    </li>
+                </ol>
+                <!-- if the question index is after the index of 0 (aka the first one), display the previous button-->
+                <button v-if="questionIndex > 0" v-on:click="prev">
+                    Previous Question
+                </button>
+                <button v-on:click="next">
+                    Next Question
+                </button>
+            </div>
         </div>
     </div>
 
