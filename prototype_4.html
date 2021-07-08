@@ -4,10 +4,11 @@
 <head>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="quiz.css">
     <style>
         .container {
+            margin: 0;
             background: #965251;
-            max-width: 500px;
             text-align: center;
         }
     </style>
@@ -16,7 +17,9 @@
 <body>
     <div id="app">
         <h1 span v-bind:class="loadClass" v-bind:style="highlight">What animal am I?</h1>
-        <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=325>
+        <div v-bind:style="centerImage">
+            <img v-bind:src="newSrc" v-bind:alt="newAlt" v-bind:title="newTitle" height=300>
+        </div>
         <!-- checking for current index of the question-->
         <div v-for="(question, index) in quiz.questions">
             <!-- only display question that is at current index-->
@@ -77,6 +80,9 @@
                     newAlt: 'Lion at Sunset',
                     newSrc: 'images/Lion.jpg',
                     newTitle: 'Lion',
+                    centerImage: {
+                        textAlign: 'center',
+                    },
                     highlight: {
                         color: 'white',
                     },
