@@ -30,7 +30,8 @@
                     <!-- for every answer found in the quiz object, display with binded styling-->
                     <li v-for="answer in question.answers" v-bind:style="textStyle">
                         <label>
-                            <input type="radio"> {{answer.text}}
+                            <input type="radio" v-bind:value="answer.correct" v-bind:name="index"
+                                v-model="userAnswers[index]"> {{answer.text}}
                         </label>
                     </li>
                 </ol>
@@ -42,7 +43,16 @@
                     Next Question
                 </button>
             </div>
+
         </div>
+        <div v-show="questionIndex === quiz.questions.length">
+            <h2>
+            Quiz finished
+          </h2>
+            <p>
+              Total score: {{ score() }} / {{ quiz.questions.length }}
+            </p>
+          </div>
     </div>
 
     <script>
@@ -87,12 +97,16 @@
                         color: 'white',
                     },
                     textStyle: {
+                        display: 'flex',
+                        justifyContent: 'center',
+                        textAlign: 'left',
                         color: '#965251',
                         listStyleType: 'none',
                     },
                     quiz: quiz,
                     //current question index in array
                     questionIndex: 0,
+                    userAnswers: Array(quiz.questions.length),
                 },
                 methods: {
                     // next question
@@ -102,6 +116,9 @@
                     // previous question
                     prev: function () {
                         this.questionIndex--;
+                    },
+                    score: function () {
+                        return this.userAnswers.filter(function (val) { return val }).length;
                     }
                 }
             });
